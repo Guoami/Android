@@ -1,4 +1,4 @@
-package guoami.activitylifecycletest;
+package com.guoami.activitylifecycletest;
 
 import org.junit.Test;
 
