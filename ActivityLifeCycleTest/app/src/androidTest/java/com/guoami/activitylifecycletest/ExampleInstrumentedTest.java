@@ -1,4 +1,4 @@
-package guoami.activitylifecycletest;
+package com.guoami.activitylifecycletest;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("guoami.activitylifecycletest", appContext.getPackageName());
+        assertEquals("com.guoami.activitylifecycletest", appContext.getPackageName());
     }
 }
