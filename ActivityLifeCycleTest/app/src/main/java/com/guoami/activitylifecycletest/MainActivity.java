@@ -1,20 +1,25 @@
 package com.guoami.activitylifecycletest;
 
 import android.content.Intent;
-import android.os.PersistableBundle;
-import android.support.v4.media.MediaMetadataCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
+    public static final String TAG = "MainActivity";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.d(TAG,"onCreate");
         setContentView(R.layout.activity_main);
+        if (savedInstanceState !=null) {
+            String tempData = savedInstanceState.getString("data_key");
+            Log.d(TAG,tempData);
+        }
         Button startNormalActivity = (Button) findViewById(R.id.start_normal_activity);
         Button startDialogActivity = (Button) findViewById(R.id.start_dialog_activity);
         startDialogActivity.setOnClickListener(new View.OnClickListener() {
