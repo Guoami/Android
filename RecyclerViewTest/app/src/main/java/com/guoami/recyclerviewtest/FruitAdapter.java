@@ -35,14 +35,14 @@ public class FruitAdapter extends RecyclerView.Adapter<FruitAdapter.ViewHolder> 
     }
 
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.fruit_item,parent,false);
-        RecyclerView.ViewHolder holder = new ViewHolder(view);
+        ViewHolder holder = new ViewHolder(view);
         return holder;
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(ViewHolder holder, int position) {
         Fruit fruit = mFruitList.get(position);
         holder.fruitImage.setImageResource(fruit.getImageId());
         holder.fruitName.setText(fruit.getName());
