@@ -2,9 +2,13 @@ package com.guoami.listviewtest;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutCompat;
 import android.support.v7.widget.ListViewCompat;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,6 +31,13 @@ public class MainActivity extends AppCompatActivity {
         //        MainActivity.this,android.R.layout.simple_list_item_1,data);
         ListView listView = (ListView) findViewById(R.id.list_view);
         listView.setAdapter(adapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view,int position,long id) {
+                Fruit fruit = fruitList.get(position);
+                Toast.makeText(MainActivity.this,fruit.getName(),Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void initFruits() {
@@ -35,21 +46,21 @@ public class MainActivity extends AppCompatActivity {
             fruitList.add(apple);
             Fruit banana = new Fruit("Banana",R.drawable.pp2);
             fruitList.add(banana);
-            Fruit orange = new Fruit("Apple",R.drawable.pp6);
+            Fruit orange = new Fruit("Orange",R.drawable.pp6);
             fruitList.add(orange);
-            Fruit watermelon = new Fruit("Banana",R.drawable.pp10);
+            Fruit watermelon = new Fruit("Watermelon",R.drawable.pp10);
             fruitList.add(watermelon);
-            Fruit pear = new Fruit("Apple",R.drawable.pp7);
+            Fruit pear = new Fruit("Pear",R.drawable.pp7);
             fruitList.add(pear);
-            Fruit grape = new Fruit("Banana",R.drawable.pp4);
+            Fruit grape = new Fruit("Grape",R.drawable.pp4);
             fruitList.add(grape);
-            Fruit pineapple = new Fruit("Apple",R.drawable.pp8);
+            Fruit pineapple = new Fruit("Pineapple",R.drawable.pp8);
             fruitList.add(pineapple);
-            Fruit strawberry = new Fruit("Banana",R.drawable.pp9);
+            Fruit strawberry = new Fruit("Strawberry",R.drawable.pp9);
             fruitList.add(strawberry);
-            Fruit cherry = new Fruit("Apple",R.drawable.pp3);
+            Fruit cherry = new Fruit("Cherry",R.drawable.pp3);
             fruitList.add(cherry);
-            Fruit mango = new Fruit("Banana",R.drawable.pp5);
+            Fruit mango = new Fruit("Mango",R.drawable.pp5);
             fruitList.add(mango);
         }
     }
