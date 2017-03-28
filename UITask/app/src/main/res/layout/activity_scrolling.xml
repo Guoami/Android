@@ -5,45 +5,64 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="com.guoami.uitask.ScrollingActivity">
+    tools:context="guoami.uitask.ScrollingActivity">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/app_bar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/app_bar_height"
         android:fitsSystemWindows="true"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        >
+        android:theme="@style/AppTheme.AppBarOverlay">
+
         <android.support.design.widget.CollapsingToolbarLayout
             android:id="@+id/toolbar_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fitsSystemWindows="true"
             app:contentScrim="?attr/colorPrimary"
-            app:layout_scrollFlags="scroll|enterAlways|enterAlwaysCollapsed">
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 app:layout_collapseMode="pin"
-                app:popupTheme="@style/AppTheme.PopupOverlay"
-                />
+                app:popupTheme="@style/AppTheme.PopupOverlay" />
 
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
 
-    <android.support.design.widget.FloatingActionButton
+    <include layout="@layout/content_scrolling" />
+
+    <LinearLayout
+        android:orientation="horizontal"
         android:id="@+id/fab"
         android:layout_width="366dp"
         android:layout_height="40dp"
         android:layout_margin="5dp"
         app:layout_anchor="@id/app_bar"
         app:layout_anchorGravity="bottom|center"
-        android:src="@drawable/dialog_1" />
+        android:background="@drawable/comment">
+
+        <ImageView
+            android:id="@+id/read"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_margin="5dp"
+            android:src="@drawable/read" />
+
+        <TextView
+            android:id="@+id/number_words"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center|left"
+            android:text="3451235"
+            android:textColor="#354f"
+            android:textSize="20sp"/>
 
 
-
-    <include layout="@layout/content_scrolling" />
+    </LinearLayout>
 
 </android.support.design.widget.CoordinatorLayout>
