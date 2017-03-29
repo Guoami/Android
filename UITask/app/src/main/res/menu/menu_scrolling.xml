@@ -1,19 +1,18 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/menu"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="guoami.uitask.ScrollingActivity">
+    tools:context="com.guoami.uitask.ScrollingActivity">
     <item
         android:id="@+id/action_settings"
         android:orderInCategory="100"
         android:title="@string/action_settings"
         app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_share"
+        android:icon="@drawable/share"
+        android:orderInCategory="90"
+        app:showAsAction="always"
+        android:title="share" />
 </menu>
-<ImageButton
-android:id="@+id/share_button"
-android:layout_width="wrap_content"
-android:layout_height="wrap_content"
-android:background="#00000000"
-android:layout_centerVertical="true"
-android:layout_alignParentLeft="true"
-android:src="@drawable/share">
-</ImageButton>
