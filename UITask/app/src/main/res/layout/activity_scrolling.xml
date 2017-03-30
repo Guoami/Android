@@ -12,7 +12,7 @@
     <android.support.design.widget.AppBarLayout
         android:id="@+id/app_bar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="129dp"
         android:fitsSystemWindows="true"
         android:background="#2196f3"
         android:theme="@style/AppTheme.AppBarOverlay">
@@ -20,24 +20,88 @@
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
+            android:layout_height="wrap_content"
             android:background="#2196f3"
             app:layout_scrollFlags="scroll|enterAlways" />
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:text="题目题目题目提木头题目题目替题目替题目题目题目题目题目题目提木头题目题目题目提木头题目"
+            android:textColor="#ffffff"
+            android:textSize="32px"
+            app:layout_scrollFlags="scroll"/>
+
 
     </android.support.design.widget.AppBarLayout>
 
 
+    <RelativeLayout
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_margin="5dp"
+        android:background="@drawable/dialog"
+        android:orientation="horizontal"
+        app:layout_anchor="@id/app_bar"
+        app:layout_anchorGravity="bottom|center"
+        app:layout_scrollFlags="scroll">
+
+        <ImageView
+            android:id="@+id/read"
+            android:layout_width="40px"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="5dp"
+            android:src="@drawable/read" />
+
+        <TextView
+            android:id="@+id/number_words"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@+id/read"
+            android:layout_toRightOf="@+id/read"
+            android:text="3451235"
+            android:textColor="#888888"
+            android:textSize="28px" />
+
+        <TextView
+            android:id="@+id/time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="15dp"
+            android:text="10分钟"
+            android:textColor="#888888"
+            android:textSize="28px" />
+
+        <ImageView
+            android:id="@+id/wait"
+            android:layout_width="40px"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@id/time"
+            android:src="@drawable/wait" />
+
+    </RelativeLayout>
 
     <android.support.v4.widget.NestedScrollView
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="497dp"
+        android:layout_marginTop="20dp"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         tools:context="com.guoami.uitask.ScrollingActivity"
-        tools:showIn="@layout/activity_scrolling">
-
+        tools:showIn="@layout/activity_scrolling"
+        android:id="@+id/main_text">
 
         <TextView
             android:layout_width="wrap_content"
