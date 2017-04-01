@@ -45,7 +45,7 @@ public class ScrollingActivity extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scrolling);
 
-        NestedScrollView nestedScrollView = (NestedScrollView) findViewById(R.id.main_text);
+        NestedScrollView nestedScrollView = (NestedScrollView) findViewById(R.id.nsv);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 
         toolbar.setTitle("Android 笔试题");
@@ -53,7 +53,7 @@ public class ScrollingActivity extends AppCompatActivity  {
         //toolbar.setLogo(R.drawable.wait);
         //toolbar.setSubtitle("笔试题笔试题笔试题便会提比分合肥看爸妈家阿尔山东方额发恶风发");
         setSupportActionBar(toolbar);
-        toolbar.setNavigationIcon(R.drawable.close);//设置close图标
+        toolbar.setNavigationIcon(R.drawable.ic_close);//设置close图标
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -167,27 +167,27 @@ public class ScrollingActivity extends AppCompatActivity  {
     }
 
     //点按屏幕使ToolBar弹出
-    private void showTop() {
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(toolbar,"y",toolbar.getY(),
-                toolbar.getY()+toolbar.getHeight());
-        objectAnimator.setDuration(TIME_ANIMATION);
-        ObjectAnimator.start();
-
-        isTopHide = false;
-
-    }
+//    private void showTop() {
+//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+//        ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(toolbar,"y",toolbar.getY(),
+//                toolbar.getY()+toolbar.getHeight());
+//        objectAnimator.setDuration(TIME_ANIMATION);
+//        ObjectAnimator.start();
+//
+//        isTopHide = false;
+//
+//    }
 
     //点击屏幕使ToolBar隐藏
-    private void hideTop() {
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(toolbar,"y",toolbar.getY(),
-                toolbar.getY()-toolbar.getHeight());
-        objectAnimator.setDuration(TIME_ANIMATION);
-        ObjectAnimator.start();
-
-        isTopHide = true;
-    }
+//    private void hideTop() {
+//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+//        ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(toolbar,"y",toolbar.getY(),
+//                toolbar.getY()-toolbar.getHeight());
+//        objectAnimator.setDuration(TIME_ANIMATION);
+//        ObjectAnimator.start();
+//
+//        isTopHide = true;
+//    }
 
     class MyGestureListener extends GestureDetector.SimpleOnGestureListener {
         @Override
@@ -199,10 +199,10 @@ public class ScrollingActivity extends AppCompatActivity  {
         public boolean onSingleTapConfirmed(MotionEvent e) {
             if(isToolsHide && isTopHide) {
                 showTools();
-                showTop();
+//                showTop();
             } else {
                 hideTools();
-                hideTop();
+//                hideTop();
             }
             return super.onSingleTapConfirmed(e);
         }
