@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.guoami.uitask.ScrollingActivity">
+
     <item
         android:id="@+id/action_settings"
         android:orderInCategory="100"
@@ -12,7 +13,8 @@
     <item
         android:id="@+id/action_share"
         android:icon="@drawable/ic_share"
-        android:orderInCategory="90"
+        android:orderInCategory="91"
         app:showAsAction="always"
         android:title="share" />
+
 </menu>

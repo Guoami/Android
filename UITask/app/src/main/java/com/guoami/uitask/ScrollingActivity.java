@@ -1,25 +1,16 @@
 package com.guoami.uitask;
 
-import android.animation.ObjectAnimator;
-import android.app.Activity;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
-import android.support.v4.media.VolumeProviderCompat;
-import android.support.v4.view.GestureDetectorCompat;
-import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.GestureDetector;
-import android.view.MotionEvent;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
+import android.view.View;
 import android.view.ViewConfiguration;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
-
-import static java.security.AccessController.getContext;
 
 public class ScrollingActivity extends AppCompatActivity  {
 
@@ -45,8 +36,9 @@ public class ScrollingActivity extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scrolling);
 
-        NestedScrollView nestedScrollView = (NestedScrollView) findViewById(R.id.nsv);
+//        NestedScrollView nestedScrollView = (NestedScrollView) findViewById(R.id.nsv);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        final RelativeLayout relativeLayout = (RelativeLayout) findViewById(R.id.fab_comment);
 
         toolbar.setTitle("Android 笔试题");
         //toolbar.setTitleTextColor();//设置颜色
@@ -63,9 +55,9 @@ public class ScrollingActivity extends AppCompatActivity  {
         toolbar.setOnMenuItemClickListener(onMenuItemClickListener);//设置菜单按钮点击事件
 
         viewSlop = ViewConfiguration.get(this).getScaledTouchSlop();
-        gestureDetector = new GestureDetector(this,new MyGestureListener());
+//        gestureDetector = new GestureDetector(this,new MyGestureListener());
 
-        nestedScrollView.setOnTouchListener(new View.OnTouchListener() {
+        relativeLayout.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent motionEvent) {
                 switch (motionEvent.getAction()) {
@@ -78,11 +70,15 @@ public class ScrollingActivity extends AppCompatActivity  {
                             isUpSlide = disY < 0;
                             isDownSlide = disY > 0;
                             if(isUpSlide) {
-                                if(!isToolsHide)
-                                    hideTools();
+                                if(!isToolsHide){
+                                    relativeLayout.setVisibility(View.INVISIBLE);
+                                    isToolsHide = false;
+                                }
                             }else if(isDownSlide) {
-                                if(isToolsHide)
-                                    showTools();
+                                if(isToolsHide){
+                                    relativeLayout.setVisibility(View.VISIBLE);
+                                    isToolsHide = true;
+                                }
                             }
                         }
                         lastY = motionEvent.getY();
@@ -145,26 +141,26 @@ public class ScrollingActivity extends AppCompatActivity  {
     };
 
     //显示下方工具栏
-    private void showTools() {
-        LinearLayout comment_bottom = (LinearLayout) findViewById(R.id.content_bottom);
-        ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(comment_bottom,"y",comment_bottom.getY(),
-                        comment_bottom.getY()-comment_bottom.getHeight());
-        objectAnimator.setDuration(TIME_ANIMATION);
-        ObjectAnimator.start();
-
-        isToolsHide = false;
-    }
+//    private void showTools() {
+//        LinearLayout comment_bottom = (LinearLayout) findViewById(R.id.content_bottom);
+//        ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(comment_bottom,"y",comment_bottom.getY(),
+//                        comment_bottom.getY()-comment_bottom.getHeight());
+//        objectAnimator.setDuration(TIME_ANIMATION);
+//        ObjectAnimator.start();
+//
+//        isToolsHide = false;
+//    }
 
     //隐藏工具栏
-    private void hideTools() {
-        LinearLayout comment_bottom = (LinearLayout) findViewById(R.id.content_bottom);
-        ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(comment_bottom,"y",comment_bottom.getY(),
-                comment_bottom.getY()+comment_bottom.getHeight());
-        objectAnimator.setDuration(TIME_ANIMATION);
-        ObjectAnimator.start();
-
-        isToolsHide = true;
-    }
+//    private void hideTools() {
+//        LinearLayout comment_bottom = (LinearLayout) findViewById(R.id.content_bottom);
+//        ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(comment_bottom,"y",comment_bottom.getY(),
+//                comment_bottom.getY()+comment_bottom.getHeight());
+//        objectAnimator.setDuration(TIME_ANIMATION);
+//        ObjectAnimator.start();
+//
+//        isToolsHide = true;
+//    }
 
     //点按屏幕使ToolBar弹出
 //    private void showTop() {
@@ -189,23 +185,23 @@ public class ScrollingActivity extends AppCompatActivity  {
 //        isTopHide = true;
 //    }
 
-    class MyGestureListener extends GestureDetector.SimpleOnGestureListener {
-        @Override
-        public boolean onDown(MotionEvent e) {
-            return true;
-        }
-
-        @Override
-        public boolean onSingleTapConfirmed(MotionEvent e) {
-            if(isToolsHide && isTopHide) {
-                showTools();
-//                showTop();
-            } else {
-                hideTools();
-//                hideTop();
-            }
-            return super.onSingleTapConfirmed(e);
-        }
-        //函数内部可继续添加长按，双击，滑动等事件
-    }
+//    class MyGestureListener extends GestureDetector.SimpleOnGestureListener {
+//        @Override
+//        public boolean onDown(MotionEvent e) {
+//            return true;
+//        }
+//
+//        @Override
+//        public boolean onSingleTapConfirmed(MotionEvent e) {
+//            if(isToolsHide && isTopHide) {
+//                showTools();
+////                showTop();
+//            } else {
+//                hideTools();
+////                hideTop();
+//            }
+//            return super.onSingleTapConfirmed(e);
+//        }
+//        //函数内部可继续添加长按，双击，滑动等事件
+//    }
 }
