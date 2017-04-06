@@ -1,49 +1,37 @@
 package com.guoami.uitask;
 
+import android.animation.Animator;
+import android.content.Context;
 import android.os.Bundle;
+import android.support.design.widget.AppBarLayout;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.v4.view.animation.FastOutLinearInInterpolator;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.GestureDetector;
+import android.util.AttributeSet;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewConfiguration;
+import android.view.ViewPropertyAnimator;
+import android.view.animation.Interpolator;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 public class ScrollingActivity extends AppCompatActivity  {
 
 
-    private boolean isToolsHide;
-
-    private boolean isTopHide;
-
-    private float lastY;//记录按下的坐标
-
-    private float viewSlop;
-
-    private boolean isUpSlide;
-
-    private boolean isDownSlide;
-
-    private GestureDetector gestureDetector;
-
-    private static final int TIME_ANIMATION = 300;
+//    private static final Interpolator interpolator = new FastOutLinearInInterpolator();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scrolling);
 
-//        NestedScrollView nestedScrollView = (NestedScrollView) findViewById(R.id.nsv);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        final RelativeLayout relativeLayout = (RelativeLayout) findViewById(R.id.fab_comment);
 
         toolbar.setTitle("Android 笔试题");
-        //toolbar.setTitleTextColor();//设置颜色
-        //toolbar.setLogo(R.drawable.wait);
-        //toolbar.setSubtitle("笔试题笔试题笔试题便会提比分合肥看爸妈家阿尔山东方额发恶风发");
         setSupportActionBar(toolbar);
         toolbar.setNavigationIcon(R.drawable.ic_close);//设置close图标
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
@@ -54,50 +42,59 @@ public class ScrollingActivity extends AppCompatActivity  {
         });
         toolbar.setOnMenuItemClickListener(onMenuItemClickListener);//设置菜单按钮点击事件
 
-        viewSlop = ViewConfiguration.get(this).getScaledTouchSlop();
-//        gestureDetector = new GestureDetector(this,new MyGestureListener());
 
-        relativeLayout.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent motionEvent) {
-                switch (motionEvent.getAction()) {
-                    case MotionEvent.ACTION_DOWN://手指按下
-                        lastY = motionEvent.getY();
-                        break;
-                    case MotionEvent.ACTION_MOVE://手指滑动
-                        float disY = motionEvent.getY()-lastY;
-                        if (Math.abs(disY)>viewSlop) {
-                            isUpSlide = disY < 0;
-                            isDownSlide = disY > 0;
-                            if(isUpSlide) {
-                                if(!isToolsHide){
-                                    relativeLayout.setVisibility(View.INVISIBLE);
-                                    isToolsHide = false;
-                                }
-                            }else if(isDownSlide) {
-                                if(isToolsHide){
-                                    relativeLayout.setVisibility(View.VISIBLE);
-                                    isToolsHide = true;
-                                }
-                            }
-                        }
-                        lastY = motionEvent.getY();
-                        break;
-                }
-                gestureDetector.onTouchEvent(motionEvent);
-                return false;
-            }
-        });
+        RelativeLayout relativeLayout = (RelativeLayout) findViewById(R.id.bottom_comment);
+        CoordinatorLayout coordinatorLayout = (CoordinatorLayout) findViewById(R.id.main_content);
+        AppBarLayout appBarLayout = (AppBarLayout) findViewById(R.id.app_bar);
 
+        BottomBehavior bottomBehavior = new BottomBehavior();
+        bottomBehavior.onDependentViewChanged(coordinatorLayout,relativeLayout,appBarLayout);
 
-//        RelativeLayout fab = (RelativeLayout) findViewById(R.id.fab);
-//        fab.setOnClickListener(new View.OnClickListener() {
+//        viewSlop = ViewConfiguration.get(this).getScaledTouchSlop();
+
+//        relativeLayout.setOnTouchListener(new View.OnTouchListener() {
 //            @Override
-//            public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
+//            public boolean onTouch(View v, MotionEvent motionEvent) {
+//                switch (motionEvent.getAction()) {
+//                    case MotionEvent.ACTION_DOWN://手指按下
+//                        lastY = motionEvent.getY();
+//                        break;
+//                    case MotionEvent.ACTION_MOVE://手指滑动
+//                        float disY = motionEvent.getY()-lastY;
+//                        if (Math.abs(disY)>viewSlop) {
+//                            isUpSlide = disY < 0;
+//                            isDownSlide = disY > 0;
+//                            if(isUpSlide) {
+//                                if(!isToolsHide){
+//                                    relativeLayout.setVisibility(View.INVISIBLE);
+//                                    isToolsHide = false;
+//                                }
+//                            }else if(isDownSlide) {
+//                                if(isToolsHide){
+//                                    relativeLayout.setVisibility(View.VISIBLE);
+//                                    isToolsHide = true;
+//                                }
+//                            }
+//                        }
+//                        lastY = motionEvent.getY();
+//                        break;
+//                }
+//                gestureDetector.onTouchEvent(motionEvent);
+//                return false;
 //            }
 //        });
+
+        relativeLayout.setOnTouchListener(new setOnTouchListener());
+    }
+
+    private class setOnTouchListener implements View.OnTouchListener {
+        @Override
+        public boolean onTouch(View v, MotionEvent motionEvent){
+            float x = motionEvent.getX();
+            float y = motionEvent.getY();
+            Log.d("you touch","fhjehr");
+            return true;
+        }
     }
 
     @Override
@@ -140,68 +137,57 @@ public class ScrollingActivity extends AppCompatActivity  {
         }
     };
 
-    //显示下方工具栏
-//    private void showTools() {
-//        LinearLayout comment_bottom = (LinearLayout) findViewById(R.id.content_bottom);
-//        ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(comment_bottom,"y",comment_bottom.getY(),
-//                        comment_bottom.getY()-comment_bottom.getHeight());
-//        objectAnimator.setDuration(TIME_ANIMATION);
-//        ObjectAnimator.start();
-//
-//        isToolsHide = false;
-//    }
 
-    //隐藏工具栏
-//    private void hideTools() {
-//        LinearLayout comment_bottom = (LinearLayout) findViewById(R.id.content_bottom);
-//        ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(comment_bottom,"y",comment_bottom.getY(),
-//                comment_bottom.getY()+comment_bottom.getHeight());
-//        objectAnimator.setDuration(TIME_ANIMATION);
-//        ObjectAnimator.start();
+//    private void hide(final View view) {
+//        ViewPropertyAnimator animator = view.animate().translationY(view.getHeight()).setInterpolator(interpolator).setDuration(200);
+//        animator.setListener(new Animator.AnimatorListener() {
+//            @Override
+//            public void onAnimationStart(Animator animation) {
 //
-//        isToolsHide = true;
-//    }
-
-    //点按屏幕使ToolBar弹出
-//    private void showTop() {
-//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-//        ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(toolbar,"y",toolbar.getY(),
-//                toolbar.getY()+toolbar.getHeight());
-//        objectAnimator.setDuration(TIME_ANIMATION);
-//        ObjectAnimator.start();
-//
-//        isTopHide = false;
-//
-//    }
-
-    //点击屏幕使ToolBar隐藏
-//    private void hideTop() {
-//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-//        ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(toolbar,"y",toolbar.getY(),
-//                toolbar.getY()-toolbar.getHeight());
-//        objectAnimator.setDuration(TIME_ANIMATION);
-//        ObjectAnimator.start();
-//
-//        isTopHide = true;
-//    }
-
-//    class MyGestureListener extends GestureDetector.SimpleOnGestureListener {
-//        @Override
-//        public boolean onDown(MotionEvent e) {
-//            return true;
-//        }
-//
-//        @Override
-//        public boolean onSingleTapConfirmed(MotionEvent e) {
-//            if(isToolsHide && isTopHide) {
-//                showTools();
-////                showTop();
-//            } else {
-//                hideTools();
-////                hideTop();
 //            }
-//            return super.onSingleTapConfirmed(e);
-//        }
-//        //函数内部可继续添加长按，双击，滑动等事件
+//
+//            @Override
+//            public void onAnimationEnd(Animator animation) {
+//                view.setVisibility(View.GONE);
+//            }
+//
+//            @Override
+//            public void onAnimationCancel(Animator animation) {
+//                show(view);
+//            }
+//
+//            @Override
+//            public void onAnimationRepeat(Animator animation) {
+//
+//            }
+//        });
+//        animator.start();
 //    }
+//    //
+//    private void show(final View view) {
+//        ViewPropertyAnimator animator = view.animate().translationY(0).setInterpolator(interpolator).setDuration(200);
+//        animator.setListener(new Animator.AnimatorListener() {
+//            @Override
+//            public void onAnimationStart(Animator animation) {
+//
+//            }
+//
+//            @Override
+//            public void onAnimationEnd(Animator animation) {
+//                view.setVisibility(View.VISIBLE);
+//            }
+//
+//            @Override
+//            public void onAnimationCancel(Animator animation) {
+//                hide(view);
+//            }
+//
+//            @Override
+//            public void onAnimationRepeat(Animator animation) {
+//
+//            }
+//        });
+//        animator.start();
+//    }
+
 }

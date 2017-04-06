@@ -8,14 +8,24 @@
     tools:context="com.guoami.uitask.ScrollingActivity"
     tools:showIn="@layout/activity_scrolling">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="5dp"
-        android:layout_marginLeft="18dp"
-        android:layout_marginRight="18dp"
-        android:textColor="#444444"
-        android:textSize="30px"
-        android:text="@string/large_text" />
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="18dp"
+            android:layout_marginRight="18dp"
+            android:textColor="#444444"
+            android:textSize="30px"
+            android:text="@string/large_text" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="50dp" />
+    </LinearLayout>
 
 </android.support.v4.widget.NestedScrollView>

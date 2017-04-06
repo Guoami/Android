@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:id="@+id/bottom_comment"
+    android:layout_width="match_parent"
+    android:layout_height="57dp"
+    android:background="@drawable/dialog3"
+    android:orientation="horizontal"
+    android:layout_gravity="bottom"
+    app:layout_behavior="com.guoami.uitask.BottomBehavior"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageView
+        android:id="@+id/read2"
+        android:layout_width="50px"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="58dp"
+        android:src="@drawable/read"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="58dp" />
+
+    <TextView
+        android:id="@+id/number_words2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toEndOf="@+id/read2"
+        android:layout_toRightOf="@+id/read2"
+        android:text="34541字"
+        android:textColor="#888888"
+        android:textSize="28px" />
+
+    <TextView
+        android:id="@+id/xin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawablePadding="5dp"
+        android:drawableTop="@drawable/ic_xin"
+        android:gravity="center_horizontal"
+        android:text="收藏"
+        android:textColor="#999999"
+        android:textSize="20px"
+        android:layout_marginRight="25dp"
+        android:layout_marginEnd="25dp"
+        android:layout_alignBaseline="@+id/comment"
+        android:layout_alignBottom="@+id/comment"
+        android:layout_toLeftOf="@+id/comment"
+        android:layout_toStartOf="@+id/comment" />
+
+    <TextView
+        android:id="@+id/comment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawablePadding="5dp"
+        android:drawableTop="@drawable/ic_comment"
+        android:gravity="center_horizontal"
+        android:text="评论 184"
+        android:textColor="#999999"
+        android:textSize="20px"
+        android:layout_marginRight="25dp"
+        android:layout_marginEnd="25dp"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+</RelativeLayout>
