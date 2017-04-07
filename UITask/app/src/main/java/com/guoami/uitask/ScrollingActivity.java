@@ -43,12 +43,12 @@ public class ScrollingActivity extends AppCompatActivity  {
         toolbar.setOnMenuItemClickListener(onMenuItemClickListener);//设置菜单按钮点击事件
 
 
-        RelativeLayout relativeLayout = (RelativeLayout) findViewById(R.id.bottom_comment);
-        CoordinatorLayout coordinatorLayout = (CoordinatorLayout) findViewById(R.id.main_content);
-        AppBarLayout appBarLayout = (AppBarLayout) findViewById(R.id.app_bar);
+//        RelativeLayout relativeLayout = (RelativeLayout) findViewById(R.id.bottom_comment);
+//        CoordinatorLayout coordinatorLayout = (CoordinatorLayout) findViewById(R.id.main_content);
+//        AppBarLayout appBarLayout = (AppBarLayout) findViewById(R.id.app_bar);
 
-        BottomBehavior bottomBehavior = new BottomBehavior();
-        bottomBehavior.onDependentViewChanged(coordinatorLayout,relativeLayout,appBarLayout);
+//        BottomBehavior bottomBehavior = new BottomBehavior();
+//        bottomBehavior.onDependentViewChanged(coordinatorLayout,relativeLayout,appBarLayout);
 
 //        viewSlop = ViewConfiguration.get(this).getScaledTouchSlop();
 
@@ -84,18 +84,18 @@ public class ScrollingActivity extends AppCompatActivity  {
 //            }
 //        });
 
-        relativeLayout.setOnTouchListener(new setOnTouchListener());
+//        relativeLayout.setOnTouchListener(new setOnTouchListener());
     }
 
-    private class setOnTouchListener implements View.OnTouchListener {
-        @Override
-        public boolean onTouch(View v, MotionEvent motionEvent){
-            float x = motionEvent.getX();
-            float y = motionEvent.getY();
-            Log.d("you touch","fhjehr");
-            return true;
-        }
-    }
+//    private class setOnTouchListener implements View.OnTouchListener {
+//        @Override
+//        public boolean onTouch(View v, MotionEvent motionEvent){
+//            float x = motionEvent.getX();
+//            float y = motionEvent.getY();
+//            Log.d("you touch","fhjehr");
+//            return true;
+//        }
+//    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
