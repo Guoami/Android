@@ -1,23 +1,11 @@
 package com.guoami.uitask;
 
-import android.animation.Animator;
-import android.content.Context;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.support.design.widget.AppBarLayout;
-import android.support.design.widget.CoordinatorLayout;
-import android.support.v4.view.animation.FastOutLinearInInterpolator;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.AttributeSet;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewPropertyAnimator;
-import android.view.animation.Interpolator;
-import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 public class ScrollingActivity extends AppCompatActivity  {
@@ -32,10 +20,8 @@ public class ScrollingActivity extends AppCompatActivity  {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 
-        toolbar.setTitle("Android 笔试题");
-//        toolbar.setTitleTextColor(Color.parseColor("FFFFFF"));
+        toolbar.setTitle("");//设置为空
         setSupportActionBar(toolbar);
-//        toolbar.setNavigationIcon(R.drawable.ic_close);//设置close图标
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
