@@ -35,7 +35,7 @@ public class BottomBehavior extends CoordinatorLayout.Behavior<View> {
     @Override
     public boolean onDependentViewChanged(CoordinatorLayout parent, View child, View dependency) {
         translationY = Math.abs(dependency.getTop());
-//        child.setTranslationY(translationY);
+        child.setTranslationY(translationY);
         return true;
     }
 

@@ -2,6 +2,7 @@ package com.guoami.uitask;
 
 import android.animation.Animator;
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CoordinatorLayout;
@@ -32,8 +33,9 @@ public class ScrollingActivity extends AppCompatActivity  {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 
         toolbar.setTitle("Android 笔试题");
+//        toolbar.setTitleTextColor(Color.parseColor("FFFFFF"));
         setSupportActionBar(toolbar);
-        toolbar.setNavigationIcon(R.drawable.ic_close);//设置close图标
+//        toolbar.setNavigationIcon(R.drawable.ic_close);//设置close图标
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

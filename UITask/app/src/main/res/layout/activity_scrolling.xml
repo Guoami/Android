@@ -19,12 +19,7 @@
         app:layout_scrollFlags="scroll|enterAlways"
         app:elevation="0dp">
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#2196f3"
-            app:layout_scrollFlags="scroll|enterAlways|snap" />
+        <include layout="@layout/toolbar" android:id="@+id/toolbar"/>
 
     </android.support.design.widget.AppBarLayout>
 
