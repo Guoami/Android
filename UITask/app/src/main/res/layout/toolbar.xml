@@ -18,7 +18,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="left"
         android:singleLine="true"
-        android:text="Android 2135465654"
+        android:text="中华文化博大精深"
         android:textColor="#ffffff"
         android:textSize="34px" />
 

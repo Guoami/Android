@@ -6,12 +6,16 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
-public class ScrollingActivity extends AppCompatActivity  {
+public class ScrollingActivity extends AppCompatActivity {
 
 
-//    private static final Interpolator interpolator = new FastOutLinearInInterpolator();
+    private TextView textView_xin;
+
+    private TextView textView_xined;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,60 +34,34 @@ public class ScrollingActivity extends AppCompatActivity  {
         });
         toolbar.setOnMenuItemClickListener(onMenuItemClickListener);//设置菜单按钮点击事件
 
-
-//        RelativeLayout relativeLayout = (RelativeLayout) findViewById(R.id.bottom_comment);
-//        CoordinatorLayout coordinatorLayout = (CoordinatorLayout) findViewById(R.id.main_content);
-//        AppBarLayout appBarLayout = (AppBarLayout) findViewById(R.id.app_bar);
-
-//        BottomBehavior bottomBehavior = new BottomBehavior();
-//        bottomBehavior.onDependentViewChanged(coordinatorLayout,relativeLayout,appBarLayout);
-
-//        viewSlop = ViewConfiguration.get(this).getScaledTouchSlop();
-
-//        relativeLayout.setOnTouchListener(new View.OnTouchListener() {
-//            @Override
-//            public boolean onTouch(View v, MotionEvent motionEvent) {
-//                switch (motionEvent.getAction()) {
-//                    case MotionEvent.ACTION_DOWN://手指按下
-//                        lastY = motionEvent.getY();
-//                        break;
-//                    case MotionEvent.ACTION_MOVE://手指滑动
-//                        float disY = motionEvent.getY()-lastY;
-//                        if (Math.abs(disY)>viewSlop) {
-//                            isUpSlide = disY < 0;
-//                            isDownSlide = disY > 0;
-//                            if(isUpSlide) {
-//                                if(!isToolsHide){
-//                                    relativeLayout.setVisibility(View.INVISIBLE);
-//                                    isToolsHide = false;
-//                                }
-//                            }else if(isDownSlide) {
-//                                if(isToolsHide){
-//                                    relativeLayout.setVisibility(View.VISIBLE);
-//                                    isToolsHide = true;
-//                                }
-//                            }
-//                        }
-//                        lastY = motionEvent.getY();
-//                        break;
-//                }
-//                gestureDetector.onTouchEvent(motionEvent);
-//                return false;
-//            }
-//        });
-
-//        relativeLayout.setOnTouchListener(new setOnTouchListener());
+        textView_xin = (TextView) findViewById(R.id.xin);
+        textView_xined = (TextView) findViewById(R.id.xined);
+        textView_xined.setVisibility(View.GONE);//先隐藏‘已收藏’控件
+        textView_xin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                textView_xin.setVisibility(View.GONE);//隐藏收藏控件
+                textView_xined.setVisibility(View.VISIBLE);//显示已收藏控件
+                Toast.makeText(ScrollingActivity.this,"已收藏",Toast.LENGTH_SHORT).show();
+            }
+        });
+        textView_xined.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                textView_xined.setVisibility(View.GONE);//隐藏已收藏控件
+                textView_xin.setVisibility(View.VISIBLE);//显示收藏控件
+                Toast.makeText(ScrollingActivity.this,"取消收藏",Toast.LENGTH_SHORT).show();
+            }
+        });
+        ImageView commentIcon = (ImageView) findViewById(R.id.comment_icon);
+        commentIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(ScrollingActivity.this,"评论",Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
-//    private class setOnTouchListener implements View.OnTouchListener {
-//        @Override
-//        public boolean onTouch(View v, MotionEvent motionEvent){
-//            float x = motionEvent.getX();
-//            float y = motionEvent.getY();
-//            Log.d("you touch","fhjehr");
-//            return true;
-//        }
-//    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -124,58 +102,5 @@ public class ScrollingActivity extends AppCompatActivity  {
             return true;
         }
     };
-
-
-//    private void hide(final View view) {
-//        ViewPropertyAnimator animator = view.animate().translationY(view.getHeight()).setInterpolator(interpolator).setDuration(200);
-//        animator.setListener(new Animator.AnimatorListener() {
-//            @Override
-//            public void onAnimationStart(Animator animation) {
-//
-//            }
-//
-//            @Override
-//            public void onAnimationEnd(Animator animation) {
-//                view.setVisibility(View.GONE);
-//            }
-//
-//            @Override
-//            public void onAnimationCancel(Animator animation) {
-//                show(view);
-//            }
-//
-//            @Override
-//            public void onAnimationRepeat(Animator animation) {
-//
-//            }
-//        });
-//        animator.start();
-//    }
-//    //
-//    private void show(final View view) {
-//        ViewPropertyAnimator animator = view.animate().translationY(0).setInterpolator(interpolator).setDuration(200);
-//        animator.setListener(new Animator.AnimatorListener() {
-//            @Override
-//            public void onAnimationStart(Animator animation) {
-//
-//            }
-//
-//            @Override
-//            public void onAnimationEnd(Animator animation) {
-//                view.setVisibility(View.VISIBLE);
-//            }
-//
-//            @Override
-//            public void onAnimationCancel(Animator animation) {
-//                hide(view);
-//            }
-//
-//            @Override
-//            public void onAnimationRepeat(Animator animation) {
-//
-//            }
-//        });
-//        animator.start();
-//    }
 
 }

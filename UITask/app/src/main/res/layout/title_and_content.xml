@@ -16,7 +16,7 @@
             android:paddingLeft="15dp"
             android:paddingRight="15dp"
             android:paddingTop="10dp"
-            android:text="使用 Dalvik 可执行文件分包时，构建变体可能对构建流程的管理很有帮助吗?"
+            android:text="为了建设伟大的祖国，我们要团结一致，共创属于我们的明天！"
             android:textColor="#ffffff"
             android:textSize="32px"
             app:layout_scrollFlags="scroll" />
@@ -47,7 +47,7 @@
                 app:contentPadding="10dp">
 
                 <RelativeLayout
-                    android:id="@+id/fab"
+                    android:id="@+id/words_and_time"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="horizontal"

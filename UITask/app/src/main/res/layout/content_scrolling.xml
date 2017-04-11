@@ -23,9 +23,6 @@
             android:textSize="30px"
             android:text="@string/large_text" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="50dp" />
     </LinearLayout>
 
 </android.support.v4.widget.NestedScrollView>
