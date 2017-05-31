@@ -8,11 +8,6 @@ import android.widget.Toast;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -38,24 +33,24 @@ public class MainActivity extends AppCompatActivity {
   }
 
   private void getWeather() {
-    String baseUrl = "http://www.sojson.com/open/api/lunar/";
+    String baseUrl = "http://www.sojson.com/api/lunar.html";
 
-    Gson gson = new GsonBuilder()
-        .setDateFormat("yyyy-MM-dd")
-        .create();
+    //Gson gson = new GsonBuilder()
+    //    .setDateFormat("yyyy-MM-dd")
+    //    .create();
 
     Retrofit retrofit = new Retrofit.Builder()
         .baseUrl(baseUrl)
-        .addConverterFactory(GsonConverterFactory.create(gson))
+        .addConverterFactory(GsonConverterFactory.create())
         .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
         .build();
 
-    WeatherService weatherService = retrofit.create(WeatherService.class);
+    LunarService lunarService = retrofit.create(LunarService.class);
     //TODO 传入的数据需要重新设置
-    weatherService.getWeatherData("4324")
+    lunarService.getLunarData("2016-10-27")
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
-        .subscribe(new Subscriber<WeatherEntity>() {
+        .subscribe(new Subscriber<LunarEntity>() {
           @Override public void onCompleted() {
             Toast.makeText(MainActivity.this, "Get Weather", Toast.LENGTH_SHORT).show();
           }
@@ -64,8 +59,9 @@ public class MainActivity extends AppCompatActivity {
             result.setText(e.getMessage());
           }
 
-          @Override public void onNext(WeatherEntity weatherEntity) {
-            result.setText(weatherEntity.toString());
+          @Override public void onNext(LunarEntity lunarEntity) {
+            result.setText(lunarEntity.getLunarYear());
+            result.setText(lunarEntity.getLunarMonth());
           }
         });
   }
