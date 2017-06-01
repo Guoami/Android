@@ -29,11 +29,12 @@ public class MainActivity extends AppCompatActivity {
 
   @OnClick(R.id.button1)
   public void onClick() {
-    getWeather();
+    getLunarDay();
   }
 
-  private void getWeather() {
-    String baseUrl = "http://www.sojson.com/api/lunar.html";
+  private void getLunarDay() {
+    String baseUrl = "http://www.sojson.com/open/api/lunar/";
+    //String date = "2017-05-21";
 
     //Gson gson = new GsonBuilder()
     //    .setDateFormat("yyyy-MM-dd")
@@ -46,13 +47,13 @@ public class MainActivity extends AppCompatActivity {
         .build();
 
     LunarService lunarService = retrofit.create(LunarService.class);
-    //TODO 传入的数据需要重新设置
-    lunarService.getLunarData("2016-10-27")
+    //TODO 先不传参数，使用默认值
+    lunarService.getCurrentDay()
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe(new Subscriber<LunarEntity>() {
           @Override public void onCompleted() {
-            Toast.makeText(MainActivity.this, "Get Weather", Toast.LENGTH_SHORT).show();
+            Toast.makeText(MainActivity.this, "Get LunarDay", Toast.LENGTH_SHORT).show();
           }
 
           @Override public void onError(Throwable e) {
@@ -61,7 +62,6 @@ public class MainActivity extends AppCompatActivity {
 
           @Override public void onNext(LunarEntity lunarEntity) {
             result.setText(lunarEntity.getLunarYear());
-            result.setText(lunarEntity.getLunarMonth());
           }
         });
   }

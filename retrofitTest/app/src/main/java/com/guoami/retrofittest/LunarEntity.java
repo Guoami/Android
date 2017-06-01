@@ -2,6 +2,42 @@ package com.guoami.retrofittest;
 
 public class LunarEntity {
 
+  //private String com;
+  //private String state;
+  //private String type;
+  //private String postid;
+  //
+  //public String getType() {
+  //  return type;
+  //}
+  //
+  //public void setType(String type) {
+  //  this.type = type;
+  //}
+  //
+  //public String getPostid() {
+  //  return postid;
+  //}
+  //
+  //public void setPostid(String postid) {
+  //  this.postid = postid;
+  //}
+  //
+  //public String getCom() {
+  //  return com;
+  //}
+  //
+  //public String getState() {
+  //  return state;
+  //}
+
+  //@Override
+  //public String toString() {
+  //  StringBuffer sb = new StringBuffer();
+  //  sb.append( " type=" + type + " postid=" + postid);
+  //  return sb.toString();
+  //}
+
   private String year;
   private String month;
   private String day;

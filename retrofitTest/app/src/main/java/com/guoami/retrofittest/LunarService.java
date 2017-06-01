@@ -14,10 +14,13 @@ import rx.Observable;
 
 public interface LunarService {
 
-  @FormUrlEncoded
-  @POST("json.shtml") Observable<LunarEntity>
-  setData(@Field("year") String year, @Field("month") String month, @Field("day") String day);
+  //@FormUrlEncoded
+  //@POST("json.shtml") Observable<LunarEntity>
+  //setData(@Field("year") String year, @Field("month") String month, @Field("day") String day);
 
-  @GET("json.shtml") Observable<LunarEntity>
-  getLunarData(@Path("date") String date);
+  @GET("json.shtml")
+  Observable<LunarEntity> getCurrentDay();
+
+  //@GET("json.shtml") Observable<LunarEntity>
+  //getLunarData(@Path("date") String date);
 }
