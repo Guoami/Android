@@ -34,11 +34,6 @@ public class MainActivity extends AppCompatActivity {
 
   private void getLunarDay() {
     String baseUrl = "http://www.sojson.com/open/api/lunar/";
-    //String date = "2017-05-21";
-
-    //Gson gson = new GsonBuilder()
-    //    .setDateFormat("yyyy-MM-dd")
-    //    .create();
 
     Retrofit retrofit = new Retrofit.Builder()
         .baseUrl(baseUrl)
@@ -61,7 +56,12 @@ public class MainActivity extends AppCompatActivity {
           }
 
           @Override public void onNext(LunarEntity lunarEntity) {
-            result.setText(lunarEntity.getLunarYear());
+            //result.setText(lunarEntity.getData().getLunarYear());
+            //result.setText(lunarEntity.getData().getLunarMonth());
+            //result.setText(lunarEntity.getData().getLunarDay());
+            //result.setText(lunarEntity.getData().getCyclicalYear());
+            result.setText(lunarEntity.getData().getCyclicalMonth());
+            //result.setText(lunarEntity.getData().getCyclicalDay());
           }
         });
   }
